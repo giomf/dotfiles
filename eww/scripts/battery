@@ -1,0 +1,60 @@
+#!/bin/bash
+
+STATUS_PATH=/sys/class/power_supply/BAT0/status
+CAPACITY_PATH=/sys/class/power_supply/BAT0/capacity
+CAPACITY=$(cat ${CAPACITY_PATH})
+
+if [[ $1 = "--icon" ]]; then
+
+    STATUS=$(cat ${STATUS_PATH})
+
+    if [[ ${STATUS} == "Charging" ]]; then
+    
+       if [[ ${CAPACITY} -ge "95" ]]; then
+            echo ""
+        elif [[ ${CAPACITY} -ge "75" ]]; then
+            echo ""
+        elif [[ ${CAPACITY} -ge "50" ]]; then
+            echo ""
+        elif [[ ${CAPACITY} -ge "25" ]]; then
+            echo ""
+        elif [[ ${CAPACITY} -ge "25" ]]; then
+            echo ""
+        elif [[ ${CAPACITY} -ge "25" ]]; then
+            echo ""
+        else
+            echo ""
+        fi
+
+    else
+        if [[ ${CAPACITY} -ge "95" ]]; then
+            echo ""
+        elif [[ ${CAPACITY} -ge "90" ]]; then
+            echo ""
+        elif [[ ${CAPACITY} -ge "80" ]]; then
+            echo ""
+        elif [[ ${CAPACITY} -ge "70" ]]; then
+            echo ""
+        elif [[ ${CAPACITY} -ge "60" ]]; then
+            echo ""
+        elif [[ ${CAPACITY} -ge "50" ]]; then
+            echo ""
+        elif [[ ${CAPACITY} -ge "40" ]]; then
+            echo ""
+        elif [[ ${CAPACITY} -ge "30" ]]; then
+            echo ""
+        elif [[ ${CAPACITY} -ge "20" ]]; then
+            echo ""
+        elif [[ ${CAPACITY} -ge "10" ]]; then
+            echo ""
+        else
+            echo ""
+        fi 
+    fi
+
+elif [[ $1 = "--capacity" ]]; then
+    echo ${CAPACITY}
+fi
+
+
+

@@ -1,0 +1,98 @@
+;;------------------VARIABLES-----------------------------
+(defvar volume-reveal false)
+(defvar calendar-reveal false)
+
+;;------------------POLLS-----------------------------
+(defpoll time :interval "1s" "date '+%H:%M'")
+(defpoll date :interval "1s" "date '+KW: %V %a %d.%m.%Y'")
+(defpoll battery-icon :interval "10s" "../scripts/battery --icon")
+(defpoll battery-capacity :interval "10s" "../scripts/battery --capacity")
+(defpoll volume-icon :interval "1s" "../scripts/volume --icon")
+(defpoll volume :interval "1s" "../scripts/volume --volume")
+
+
+
+
+;;------------------WIDGETS-------------------------------
+(defwidget clock []
+  (eventbox :onhover "eww update calendar-reveal=true"
+    :onhoverlost "eww update calendar-reveal=false"
+    (box :space-evenly "false" :hexpand "false" :vexpand "false"
+      (label :text "${time}" :tooltip "${date}")
+    )
+  )
+)
+
+(defwidget battery []
+  (box :space-evenly "false" :hexpand "false" :vexpand "false"
+    (box :class "icon" :tooltip "${battery-capacity}%" :style "background-image: url('${battery-icon}');")
+  )
+)
+
+
+
+(defwidget volume []
+  (eventbox :onhover "eww update volume-reveal=true"
+    :onhoverlost "eww update volume-reveal=false"
+    (box :space-evenly "false" :hexpand "false" :vexpand "false"
+      (box :class "icon" :tooltip "${volume}%" :style "background-image: url('${volume-icon}');")
+      (revealer :transition "slideright" :reveal volume-reveal :duration "350ms"
+        (box :vexpand "false" :hexpand "false" :orientation "h"
+          (scale :class "scale" :min 0 :max 101 :value "${volume}" :timeout "1s" :onchange "amixer set Master {}%"))
+      )
+    )
+  )
+)
+
+(defwidget start []
+  (box :orientation "h"
+    :space-evenly false
+    :halign "start"
+    :class "start-widgets"
+  )
+)
+
+(defwidget center []
+  (box :orientation "h"
+    :space-evenly false
+    :halign "center"
+    :class "center-widgets"
+  )
+)
+
+
+(defwidget end []
+  (box :orientation "h"
+    :class "end-widgets"
+    :spacing 5
+    :space-evenly false
+    :halign "end"
+    (volume)
+    (battery)
+    (clock)
+  )
+)
+
+(defwidget bar-widgets []
+  (box :class "bar-class"
+    :orientation "h"
+    (start)
+    (center)
+    (end)))
+
+;;------------------WINDOWS---------------------------------
+
+(defwindow bar
+  :monitor 0
+  :geometry (geometry
+    :x "0%"
+    :y "0%"
+    :width "90%"
+    :height "3%"
+  :anchor "center center")
+  :stacking "fg"
+  :focusable "false"
+  :reserve (struts :distance "40px" :side "top")
+  :windowtype "dock"
+  :wm-ignore true
+  (bar-widgets))

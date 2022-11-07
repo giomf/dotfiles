@@ -1,0 +1,54 @@
+$bg: #232634;
+$bg-alt: #292c3c;
+$fg: #cdd6f4;
+$fg-alt: #bac2de;
+$red: #e78284;
+$red-alt: #ed8796;
+$green: #a6d189;
+$green-alt: #a6da95;
+$yellow: #e5c890;
+$yellow-alt: #eed49f;
+$orange: #ef9f76;
+$orange-alt: #f5a97f;
+$blue: #8caaee;
+$blue-alt: #8aadf4;
+$purple: #ca9ee6;
+$purple-alt: #c6a0f6;
+$cyan: #99d1db;
+$cyan-alt: #91d7e3;
+$gray: #626880;
+
+* {
+  transition: 200ms ease-out;
+  background-color: $bg;
+  font-family: Arial, Helvetica, sans-serif, 'NotoSansMono Nerd Font Mono';
+}
+
+.default {
+  all: unset;
+  color: $fg;
+  font-size: 25px;
+  //border-radius: 25px;
+  //border: 2px solid $bg;
+
+}
+
+
+.player-title{
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.player-button{
+  font-size: 60px;
+  color: rebeccapurple;
+}
+
+.clock-time{
+  font-size: 30px;
+  font-weight: bold;
+}
+
+button{
+  all: unset
+}

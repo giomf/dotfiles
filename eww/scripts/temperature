@@ -1,0 +1,24 @@
+#!/bin/bash
+TEMP_PATH="/sys/class/thermal/thermal_zone8/temp"
+TEMPERATURE=$(cat ${TEMP_PATH})
+
+if [[ $1 = "--icon" ]]; then
+    
+    if [[ ${CAPACITY} -ge "75" ]]; then
+        echo ""
+    elif [[ ${CAPACITY} -ge "60" ]]; then
+        echo ""
+    elif [[ ${CAPACITY} -ge "50" ]]; then
+        echo ""
+    elif [[ ${CAPACITY} -ge "40" ]]; then
+        echo ""
+    else
+        echo ""
+    fi
+
+elif [[ $1 = "--temperature" ]]; then
+    echo ${TEMPERATURE}
+fi
+
+
+

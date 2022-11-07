@@ -1,0 +1,40 @@
+#!/bin/bash
+
+get_status(){
+    STATUS=$(playerctl -p spotify status)
+    if [[ $STATUS == "Playing" ]]; then
+        echo ""
+    else
+        echo ""
+    fi
+}
+
+update_song(){
+    eww -c ../dashboard/ update player-title="$(playerctl -p spotify metadata title)"
+    eww -c ../dashboard/ update player-artist="$(playerctl -p spotify metadata artist)"
+}
+
+
+if [[ $1 == "--status-icon" ]]; then
+    echo $(get_status)
+elif [[ $1 == "--play-pause" ]]; then
+    playerctl -p spotify play-pause
+    sleep 0.1s
+    eww -c ../dashboard/ update player-status="$(get_status)"
+elif [[ $1 == "--next" ]]; then
+    playerctl next
+    sleep 0.1s
+    update_song
+elif [[ $1 == "--previous" ]]; then
+    playerctl previous
+    sleep 0.1s
+    update_song
+elif [[ $1 == "--artist" ]]; then
+    echo $(playerctl metadata artist)
+elif [[ $1 == "--title" ]]; then
+    echo $(playerctl metadata title)
+elif [[ $1 == "--album" ]]; then
+    echo $(playerctl metadata album)
+fi
+
+

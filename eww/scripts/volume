@@ -1,0 +1,22 @@
+#!/bin/bash
+
+
+get_icon(){
+    local MUTE=$(pactl get-sink-mute @DEFAULT_SINK@ | awk '{print $2'}) 
+
+    if [[ ${MUTE} == "yes" ]]; then
+        echo ""
+    else
+        echo ""
+    fi
+}
+
+
+if [[ $1 == "--get-icon" ]]; then
+    echo $(get_icon)
+elif [[ $1 == "--get-volume" ]]; then
+    echo $(pactl get-sink-volume @DEFAULT_SINK@  | grep "Volume:" | awk '{print $5}' | awk -F"%" '{print $1}')
+elif [[ $1 == "--toggle-mute" ]]; then
+    pactl set-sink-mute @DEFAULT_SINK@ toggle
+    eww -c ../dashboard/ update volume-icon=$(get_icon)
+fi

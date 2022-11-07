@@ -1,0 +1,12 @@
+#!/bin/bash
+icon=""
+
+if [[ $1 == "--cold" ]]; then
+    redshift -m randr -P -O 6500
+    icon="ﱫ"
+elif [[ $1 == "--warm" ]]; then
+    redshift -m randr -P -O 4500
+    icon=""
+fi
+
+eww -c ../dashboard/ update redshift-icon=${icon}

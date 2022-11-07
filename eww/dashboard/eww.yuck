@@ -1,0 +1,126 @@
+;;------------------VARIABLES-----------------------------
+(defvar volume-reveal false)
+(defvar calendar-reveal false)
+(defvar redshift-icon "ﱫ")
+
+
+;;------------------POLLS-----------------------------
+(defpoll time :interval "1s" "date '+%H:%M:%S'")
+(defpoll date :interval "1s" "date '+%a %d.%m.%Y'")
+(defpoll battery-icon :interval "10s" "../scripts/battery --icon")
+(defpoll battery-capacity :interval "10s" "../scripts/battery --capacity")
+(defpoll volume-icon :interval "1s" "../scripts/volume --get-icon")
+(defpoll volume :interval "1s" "../scripts/volume --get-volume")
+(defpoll temperature :interval "1s" "../scripts/temperature --temperature")
+(defpoll temperature-icon :interval "1s" "../scripts/temperature --icon")
+(defpoll brightness :interval "1s" "light")
+
+(defpoll player-status :interval "3s" "../scripts/player --status-icon")
+(defpoll player-title :interval "3s" "../scripts/player --title")
+(defpoll player-artist :interval "3s" "../scripts/player --artist")
+
+
+;;------------------WIDGETS-------------------------------
+;; system
+(defwidget system []
+  (box :class "default" :vexpand "false" :hexpand "false"
+    (box :orientation "v" :spacing 24 :halign "center" :valign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
+      (box :class "system-temp" :orientation "h" :spaceing 120 :space-evenly "true"
+        (label  :text "${temperature-icon}")
+        (label  :text "${temperature/1000}°C")
+      )
+      (box :class "system-cpu" :orientation "h"
+        (label  :text "")
+        (label  :text "${round(EWW_CPU.avg,0)}%")
+      )
+      (box :class "system-mem"
+        (label :text "")
+        (label :text "${round(EWW_RAM.used_mem_perc,0)}%")
+      )
+      (box :class "system-disk"
+        (label :text "")
+        (label :text "${round(EWW_DISK['/'].used_perc,0)}%")
+      )
+      (box :class "system-battery"
+        (label :text "${battery-icon}")
+        (label :text "${battery-capacity}%")
+      )
+    )
+  )
+)
+
+
+(defwidget power []
+  (box :class "default" :orientation "v" :space-evenly "false" :spacing 60 :valign "center" :halign "center"
+    (box :orientation "h" :space-evenly "true" :spacing 60
+      (button :class "shutdown" :tooltip "Shutdown" :onclick  "notify-send shutdown" "")
+      (button :class "reboot" :tooltip "Reboot" :onclick "notify-send reboot" "")
+    )
+    (box :orientation "h" :space-evenly "true" :spacing 60
+      (button :class "logout" :tooltip "Logout" :onclick  "notify-send logout" "")
+      (button :class "lock" :tooltip "Lock" :onclick  "notify-send Lock" "")
+    )
+  )
+)
+
+(defwidget control []
+  (box :class "default"
+    (box :orientation "v" :space-evenly "false"
+      (scale :min 0 :max 101 :vexpand "true" :orientation "v" :flipped "true" :value "${volume}" :onchange "amixer --quiet set Master {}%")
+      (button :onclick "../scripts/volume --toggle-mute" "${volume-icon}")
+    )
+    (box :orientation "v" :space-evenly "false"
+      (scale :min 1 :max 101 :vexpand "true" :orientation "v" :flipped "true" :value "${brightness}" :onchange "light -S {}")
+      (button :onclick "../scripts/redshift --warm" :onrightclick "../scripts/redshift --cold"  "${redshift-icon}")
+    )
+  )
+)
+
+(defwidget clock []
+  (box :class "default"
+    (box :orientation "v"
+      (label :class "clock-time" :text "${time}")
+      (label :text "${date}")
+    )
+  )
+)
+
+
+(defwidget player []
+  (box :class "default"
+    (box :orientation "v" :space-evenly "false" :spacing 40 :valign "center"
+      (box :orientation "v" :space-evenly "false" :spacing 10
+        (label :class "player-title" :limit-width 35 :text "${player-title}")
+        (label :class "player-artist" :text "${player-artist}")
+      )
+      (box :class "player-button" :orientation "h"
+        (button :tooltip "Previous" :onclick "../scripts/player --previous" "")
+        (button :tooltip "Play/Pause" :onclick "../scripts/player --play-pause" "${player-status}")
+        (button :tooltip "Next" :onclick "../scripts/player --next" "")
+      )
+    )
+  )
+)
+;redshift -m randr -P -O {}"
+;;------------------WINDOWS---------------------------------
+
+
+(defwindow system :stacking "fg" :monitor 0 :focusable "false" :screen 0
+  :geometry (geometry :x 700 :y 300 :width 200 :height 300)
+  (system))
+
+(defwindow power :stacking "fg" :monitor 0 :focusable "false" :screen 0
+  :geometry (geometry :x 700 :y 610 :width 200 :height 200)
+  (power))
+
+(defwindow control :stacking "fg" :monitor 0 :focusable "false" :screen 0
+  :geometry (geometry :x 910 :y 300 :width 200 :height 510)
+  (control))
+
+(defwindow clock :stacking "fg" :monitor 0 :focusable "false" :screen 0
+  :geometry (geometry :x 1120 :y 300 :width 300 :height 100)
+  (clock))
+
+(defwindow player :stacking "fg" :monitor 0 :focusable "false" :screen 0
+  :geometry (geometry :x 1120 :y 410 :width 300 :height 200)
+  (player))
