@@ -1,7 +1,0 @@
-bindsym         $mod+Return             exec --no-startup-id kitty zellij attach -c TERMINAL
-bindsym         $mod+Shift+Return       exec --no-startup-id firefox
-bindsym         $mod+m                  exec --no-startup-id thunderbird
-bindsym         $mod+k                  exec --no-startup-id keepassxc
-bindsym         $mod+j                  exec --no-startup-id speedcrunch
-bindsym		    $mod+l		            exec --no-startup-id flameshot gui
-bindsym		    $mod+f                  exec --no-startup-id kitty tmux new-session -A -s ranger "ranger"
