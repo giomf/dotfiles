@@ -5,7 +5,7 @@ case $- in
 esac
 
 # Path to your oh-my-bash installation.
-export OSH=/home/giom/.oh-my-bash
+export OSH=/home/gicom/.oh-my-bash
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-bash is loaded.
@@ -120,19 +120,4 @@ source "$OSH"/oh-my-bash.sh
 # Example aliases
 # alias bashconfig="mate ~/.bashrc"
 # alias ohmybash="mate ~/.oh-my-bash"
-alias dust=
-
-# ######################## CUSTOM ###########################################
-
-export PATH="$PATH:$(go env GOPATH)/bin"
-export GOPATH="$(go env GOPATH)"
-
-alias ls="exa"
-alias ll="exa -lbF"
-alias lt="exa --tree --level=2"
-alias la="exa -lbFa"
-alias dust="du -hs * | sort -hr"
-alias rm='echo -e "Warning: \"rm\" will delete files permanently!\nUse \"trash\" instead to use a trashbin.\nUse \"\\\rm\" to bypass this warning."; false'
-
-source "$HOME/.cargo/env"
 
