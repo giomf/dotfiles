@@ -84,6 +84,7 @@ aliases=(
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
+  cd
 )
 
 # Which plugins would you like to conditionally load? (plugins can be found in ~/.oh-my-bash/plugins/*)
@@ -123,3 +124,4 @@ source "$OSH"/oh-my-bash.sh
 # alias bashconfig="mate ~/.bashrc"
 # alias ohmybash="mate ~/.oh-my-bash"
 
+. "$HOME/.cargo/env"
