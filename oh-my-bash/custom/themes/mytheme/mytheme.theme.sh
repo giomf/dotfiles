@@ -6,7 +6,7 @@ export SCM_THEME_PROMPT_SUFFIX="]"
 function prompt_git_status {
   local git_status
   git_status=$(git_prompt_info)
-  if [[  ${SCM_STATE} == "${SCM_THEME_PROMPT_CLEAN}" ]]; then
+  if [[ -n "$(echo ${git_status} | grep ${SCM_THEME_PROMPT_CLEAN})" ]]; then
     echo "${_omb_term_teal}${git_status}${_omb_term_normal}"
   else
     echo "${_omb_term_olive}${git_status}${_omb_term_normal}"
