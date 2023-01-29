@@ -1,4 +1,4 @@
 function cd() {
-    builtin cd $@ && exa -lbghF
+    builtin cd $@ && exa -l --no-time
 }
 
