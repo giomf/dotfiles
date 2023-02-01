@@ -1,0 +1,13 @@
+# Your preferred application launcher
+# Note: pass the final command to swaymsg so that the resulting window can be opened
+# on the original workspace that the command was run on.
+set $menu dmenu_path | dmenu | xargs swaymsg exec --
+bindsym         $mod+Space                  exec $menu
+
+bindsym         $mod+Return             exec --no-startup-id kitty zellij attach -c TERMINAL
+bindsym         $mod+Shift+Return       exec --no-startup-id firefox
+bindsym         $mod+m                  exec --no-startup-id thunderbird
+bindsym         $mod+k                  exec --no-startup-id keepassxc
+bindsym         $mod+j                  exec --no-startup-id speedcrunch
+bindsym		      $mod+l		              exec --no-startup-id flameshot gui
+bindsym		      $mod+f                  exec --no-startup-id kitty zellij --layout ranger attach -c RANGER 
