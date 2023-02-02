@@ -1,0 +1,40 @@
+(defwidget power_buttons []
+  (box
+    (button
+      :class "powermenue"
+      :onclick "/usr/bin/gnome-session-quit --power-off"
+      ""
+      
+    )
+    (button
+      :class "powermenue"
+      :onclick "/usr/bin/gnome-session-quit --reboot"
+      ""
+    )
+    (button
+      :class "powermenue"
+      :onclick "dbus-send --type=method_call --dest=org.gnome.ScreenSaver /org/gnome/ScreenSaver org.gnome.ScreenSaver.Lock"
+      ""
+    )
+    (button
+      :class "powermenue"
+      :onclick "/usr/bin/gnome-session-quit --logout"
+      ""
+    )
+  )
+)
+
+(defwindow powermenue
+  :monitor 0 
+  :stacking "fg"
+  :focusable "false" 
+  :windowtype "normal"
+  :wm-ignore true
+  :geometry (geometry
+    :x "${50-(33/2)}%"
+    :y "${50-(15/2)}%"
+    :width "33%"
+    :height "15%"
+  )
+  (power_buttons))
+
