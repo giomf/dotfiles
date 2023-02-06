@@ -2,24 +2,19 @@
   (box
     (button
       :class "powermenue"
-      :onclick "/usr/bin/gnome-session-quit --power-off"
+      :onclick "busctl call org.freedesktop.login1 /org/freedesktop/login1 org.freedesktop.login1.Manager PowerOff b false"
       ""
       
     )
     (button
       :class "powermenue"
-      :onclick "/usr/bin/gnome-session-quit --reboot"
+      :onclick "busctl call org.freedesktop.login1 /org/freedesktop/login1 org.freedesktop.login1.Manager Reboot b false"
       ""
     )
     (button
       :class "powermenue"
-      :onclick "dbus-send --type=method_call --dest=org.gnome.ScreenSaver /org/gnome/ScreenSaver org.gnome.ScreenSaver.Lock"
+      :onclick "busctl --user call org.gnome.Flashback /org/gnome/ScreenSaver org.gnome.ScreenSaver Lock"
       ""
-    )
-    (button
-      :class "powermenue"
-      :onclick "/usr/bin/gnome-session-quit --logout"
-      ""
     )
   )
 )
