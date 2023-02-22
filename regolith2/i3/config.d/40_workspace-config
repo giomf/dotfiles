@@ -2,6 +2,9 @@
 bindsym         $mod+Tab                layout toggle split
 bindsym         $mod+e                  layout tabbed
 bindsym         $mod+g                  layout stacking
+bindsym         $mod+Ctrl+Left          workspace prev
+bindsym         $mod+Ctrl+Right         workspace next
+
 
 # Split
 bindsym         $mod+h                  split v

@@ -7,4 +7,4 @@ bindsym		      $mod+l		              exec --no-startup-id flameshot gui
 bindsym		      $mod+f                  exec --no-startup-id kitty zellij --layout ranger attach -c RANGER 
 bindsym         $mod+Escape             exec --no-startup-id eww -c ~/.config/eww/powermenue/ open --toggle powermenue
 bindsym         $mod+q                  kill
-bindsym         $mod+Shift+c            reload
+bindsym         $mod+Shift+r            reload
