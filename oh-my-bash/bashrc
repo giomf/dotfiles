@@ -48,7 +48,7 @@ OSH_THEME="mytheme"
 
 # Uncomment the following line if you do not want OMB to overwrite the existing
 # aliases by the default OMB aliases defined in lib/*.sh
-# OMB_DEFAULT_ALIASES="check"
+OMB_DEFAULT_ALIASES="check"
 
 # Would you like to use another custom folder than $OSH/custom?
 # OSH_CUSTOM=/path/to/new-custom-folder
@@ -86,7 +86,6 @@ aliases=(
 plugins=(
   git
   cd
- # ssh-agent
 )
 
 # Which plugins would you like to conditionally load? (plugins can be found in ~/.oh-my-bash/plugins/*)
@@ -130,6 +129,9 @@ source "$OSH"/oh-my-bash.sh
 if [[ -f "$HOME/.cargo/env" ]]; then
   . "$HOME/.cargo/env"
 fi
+
+
+export XDG_CONFIG_HOME="${HOME}/.config"
 
 #bind 'TAB: menu-complete'
 #bind 'set show-all-if-ambiguous on'

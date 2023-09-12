@@ -22,8 +22,7 @@ else
 
     # Link custom folders
     link_files_in_directory "${SCRIPT_PATH}/custom/aliases" "${HOME}/.config/oh-my-bash/custom/aliases"
-    ln -sf "${SCRIPT_PATH}/custom/plugins/cd" "${HOME}/.config/oh-my-bash/custom/plugins/cd"
-    ln -sf "${SCRIPT_PATH}/custom/plugins/ssh-agent" "${HOME}/.config/oh-my-bash/custom/plugins/ssh-agent"
+    ln -sf "${SCRIPT_PATH}/custom/plugins/cd" "${HOME}/.config/oh-my-bash/custom/plugins"
     ln -sf "${SCRIPT_PATH}/custom/themes/mytheme" "${HOME}/.config/oh-my-bash/custom/themes"
 fi
 
