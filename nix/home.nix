@@ -14,6 +14,7 @@
     pkgs.element-desktop
     pkgs.spotify
     pkgs.eza
+    pkgs.zellij
   ];
 
 
