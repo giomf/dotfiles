@@ -1,5 +1,5 @@
 # exa
-alias ls="exa -lbghF"
-alias ll="exa -lbghF"
-alias la="exa -lbghFa"
-alias lt="exa --tree --level=2"
+alias ls="eza -lbghF"
+alias ll="eza -lbghF"
+alias la="eza -lbghFa"
+alias lt="eza --tree --level=2"
